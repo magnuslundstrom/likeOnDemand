@@ -50,6 +50,7 @@ exports.startLiking = function (_a) {
                 case 0:
                     _b.trys.push([0, 19, , 20]);
                     return [4 /*yield*/, puppeteer_1.default.launch({
+                            // headless: false,
                             args: ['--no-sandbox', '--disable-setuid-sandbox'],
                         })];
                 case 1:
@@ -115,7 +116,7 @@ exports.startLiking = function (_a) {
                     return [4 /*yield*/, page.$eval('.ltpMr ._8-yf5', function (svg) {
                             var status = svg.getAttribute('aria-label');
                             console.log('14');
-                            if (status === 'Synes godt om') {
+                            if (status === 'Like') {
                                 console.log('15');
                                 var wrapper = document.querySelector('.eo2As');
                                 console.log('16');

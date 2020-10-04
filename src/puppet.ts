@@ -16,6 +16,7 @@ export const startLiking = async ({
 }: Body): Promise<Result> => {
   try {
     const browser = await puppeteer.launch({
+      // headless: false,
       args: ['--no-sandbox', '--disable-setuid-sandbox'],
     });
 
@@ -71,7 +72,7 @@ export const startLiking = async ({
         const status = svg.getAttribute('aria-label');
 
         console.log('14');
-        if (status === 'Synes godt om') {
+        if (status === 'Like') {
           console.log('15');
           const wrapper = document.querySelector('.eo2As');
 
