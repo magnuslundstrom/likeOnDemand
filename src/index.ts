@@ -23,4 +23,10 @@ app.post('/cred', async (req: Request, res: Response) => {
   }
 });
 
-app.listen(3000, () => console.log('lets go'));
+if (process.env.NODE_ENV === 'production') {
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
+  });
+}
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log('lets go'));
