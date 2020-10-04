@@ -48,7 +48,7 @@ exports.startLiking = function (_a) {
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
-                    _b.trys.push([0, 18, , 19]);
+                    _b.trys.push([0, 19, , 20]);
                     return [4 /*yield*/, puppeteer_1.default.launch({
                             args: ['--no-sandbox', '--disable-setuid-sandbox'],
                         })];
@@ -84,17 +84,20 @@ exports.startLiking = function (_a) {
                     return [4 /*yield*/, page.goto("https://instagram.com/explore/tags/" + hashtag)];
                 case 10:
                     _b.sent();
+                    return [4 /*yield*/, page.waitForSelector('.eLAPa')];
+                case 11:
+                    _b.sent();
                     return [4 /*yield*/, page.$$eval('.eLAPa', function (photos) {
                             var element = photos[9];
                             element.click();
                         })];
-                case 11:
+                case 12:
                     _b.sent();
                     keepGoing = true;
                     count = 0;
-                    _b.label = 12;
-                case 12: return [4 /*yield*/, page.waitForSelector('.ltpMr ._8-yf5')];
-                case 13:
+                    _b.label = 13;
+                case 13: return [4 /*yield*/, page.waitForSelector('.ltpMr ._8-yf5')];
+                case 14:
                     _b.sent();
                     return [4 /*yield*/, page.$eval('.ltpMr ._8-yf5', function (svg) {
                             var status = svg.getAttribute('aria-label');
@@ -122,25 +125,25 @@ exports.startLiking = function (_a) {
                                 return false;
                             }
                         })];
-                case 14:
+                case 15:
                     res = _b.sent();
                     if (!res) {
-                        return [3 /*break*/, 16];
+                        return [3 /*break*/, 17];
                     }
                     count++;
-                    _b.label = 15;
-                case 15:
-                    if (keepGoing) return [3 /*break*/, 12];
                     _b.label = 16;
-                case 16: return [4 /*yield*/, browser.close()];
-                case 17:
+                case 16:
+                    if (keepGoing) return [3 /*break*/, 13];
+                    _b.label = 17;
+                case 17: return [4 /*yield*/, browser.close()];
+                case 18:
                     _b.sent();
                     return [2 /*return*/, { status: count }];
-                case 18:
+                case 19:
                     e_1 = _b.sent();
                     console.log(e_1);
                     return [2 /*return*/, { status: 'error' }];
-                case 19: return [2 /*return*/];
+                case 20: return [2 /*return*/];
             }
         });
     });

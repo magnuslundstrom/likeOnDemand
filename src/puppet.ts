@@ -30,6 +30,7 @@ export const startLiking = async ({
       page.waitForNavigation({ waitUntil: 'networkidle0' }),
     ]);
     await page.goto(`https://instagram.com/explore/tags/${hashtag}`);
+    await page.waitForSelector('.eLAPa');
     await page.$$eval('.eLAPa', (photos) => {
       let element: HTMLElement = photos[9] as HTMLElement;
       element.click();
