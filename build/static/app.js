@@ -2,7 +2,7 @@ const form = document.querySelector('form');
 const messageBox = document.querySelector('#message-box');
 const statuses = [
   'Waiting for work 🤓',
-  'Ill be right back, got stuff to do 🌌',
+  "I'll be right back, got stuff to do 🌌",
   (count, time) => `Finished liking ${count} posts in ${time} seconds 😲`,
   "Something went wrong. Maybe its your login credientials? Maybe the hashtag does'nt have enough posts? Minimum is 10! 🛑",
 ];

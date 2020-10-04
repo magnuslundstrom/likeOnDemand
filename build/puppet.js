@@ -48,7 +48,7 @@ exports.startLiking = function (_a) {
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
-                    _b.trys.push([0, 19, , 20]);
+                    _b.trys.push([0, 20, , 21]);
                     return [4 /*yield*/, puppeteer_1.default.launch({
                             // headless: false,
                             args: ['--no-sandbox', '--disable-setuid-sandbox'],
@@ -115,60 +115,52 @@ exports.startLiking = function (_a) {
                     console.log('13');
                     return [4 /*yield*/, page.$eval('.ltpMr ._8-yf5', function (svg) {
                             var status = svg.getAttribute('aria-label');
-                            console.log('14');
                             if (status === 'Like') {
-                                console.log('15');
                                 var wrapper = document.querySelector('.eo2As');
-                                console.log('16');
                                 if (wrapper) {
                                     var btns = wrapper.querySelectorAll('svg');
-                                    console.log('17');
                                     var like = btns[0].closest('button');
-                                    console.log('18');
                                     var favorite = btns[3]
                                         ? btns[3].closest('button')
                                         : btns[2].closest('button');
-                                    console.log('19');
                                     if (like && favorite) {
-                                        console.log('20');
                                         like.click();
-                                        console.log('21');
                                         favorite.click();
-                                        console.log('22');
                                         var continueBtn = document.querySelector('.coreSpriteRightPaginationArrow');
                                         console.log('23');
                                         if (continueBtn) {
                                             continueBtn.click();
-                                            console.log('24');
-                                            return true;
                                             // loop gets to continue;
                                         }
+                                        return true;
                                     }
                                 }
-                            }
-                            else {
-                                return false;
                             }
                         })];
                 case 15:
                     res = _b.sent();
                     if (!res) {
-                        return [3 /*break*/, 17];
+                        return [3 /*break*/, 18];
                     }
-                    count++;
-                    _b.label = 16;
+                    else {
+                        count++;
+                    }
+                    return [4 /*yield*/, page.waitFor(Math.random() * 3)];
                 case 16:
-                    if (keepGoing) return [3 /*break*/, 13];
+                    _b.sent();
                     _b.label = 17;
-                case 17: return [4 /*yield*/, browser.close()];
-                case 18:
+                case 17:
+                    if (keepGoing) return [3 /*break*/, 13];
+                    _b.label = 18;
+                case 18: return [4 /*yield*/, browser.close()];
+                case 19:
                     _b.sent();
                     return [2 /*return*/, { status: count }];
-                case 19:
+                case 20:
                     e_1 = _b.sent();
                     console.log(e_1);
                     return [2 /*return*/, { status: 'error' }];
-                case 20: return [2 /*return*/];
+                case 21: return [2 /*return*/];
             }
         });
     });
