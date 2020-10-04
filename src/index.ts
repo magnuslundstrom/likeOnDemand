@@ -1,6 +1,7 @@
 import express, { Request, Response } from 'express';
 import { startLiking } from './puppet';
 const path = require('path');
+console.log('test');
 
 const app = express();
 app.use(express.json());
