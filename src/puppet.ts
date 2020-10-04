@@ -114,5 +114,3 @@ export const startLiking = async ({
     return { status: 'error' };
   }
 };
-
-console.log('1');

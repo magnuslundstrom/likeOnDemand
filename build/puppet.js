@@ -165,4 +165,3 @@ exports.startLiking = function (_a) {
         });
     });
 };
-console.log('1');
