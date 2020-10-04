@@ -54,41 +54,53 @@ exports.startLiking = function (_a) {
                         })];
                 case 1:
                     browser = _b.sent();
+                    console.log('1');
                     return [4 /*yield*/, browser.newPage()];
                 case 2:
                     page = _b.sent();
+                    console.log('2');
                     return [4 /*yield*/, page.goto('https://instagram.com')];
                 case 3:
                     _b.sent();
+                    console.log('3');
                     return [4 /*yield*/, page.waitForSelector('input[name="username"]')];
                 case 4:
                     _b.sent();
+                    console.log('4');
                     return [4 /*yield*/, page.click('input[name="username"]')];
                 case 5:
                     _b.sent();
+                    console.log('5');
                     return [4 /*yield*/, page.keyboard.type(userName)];
                 case 6:
                     _b.sent();
+                    console.log('6');
                     return [4 /*yield*/, page.click('input[name="password"]')];
                 case 7:
                     _b.sent();
+                    console.log('7');
                     return [4 /*yield*/, page.keyboard.type(password)];
                 case 8:
                     _b.sent();
+                    console.log('8');
                     return [4 /*yield*/, Promise.all([
                             page.click('button[type=submit]'),
                             page.waitForNavigation({ waitUntil: 'networkidle0' }),
                         ])];
                 case 9:
                     _b.sent();
+                    console.log('9');
                     return [4 /*yield*/, page.goto("https://instagram.com/explore/tags/" + hashtag)];
                 case 10:
                     _b.sent();
+                    console.log('10');
                     return [4 /*yield*/, page.waitForSelector('.eLAPa')];
                 case 11:
                     _b.sent();
+                    console.log('11');
                     return [4 /*yield*/, page.$$eval('.eLAPa', function (photos) {
                             var element = photos[9];
+                            console.log('12');
                             element.click();
                         })];
                 case 12:
@@ -99,22 +111,34 @@ exports.startLiking = function (_a) {
                 case 13: return [4 /*yield*/, page.waitForSelector('.ltpMr ._8-yf5')];
                 case 14:
                     _b.sent();
+                    console.log('13');
                     return [4 /*yield*/, page.$eval('.ltpMr ._8-yf5', function (svg) {
                             var status = svg.getAttribute('aria-label');
+                            console.log('14');
                             if (status === 'Synes godt om') {
+                                console.log('15');
                                 var wrapper = document.querySelector('.eo2As');
+                                console.log('16');
                                 if (wrapper) {
                                     var btns = wrapper.querySelectorAll('svg');
+                                    console.log('17');
                                     var like = btns[0].closest('button');
+                                    console.log('18');
                                     var favorite = btns[3]
                                         ? btns[3].closest('button')
                                         : btns[2].closest('button');
+                                    console.log('19');
                                     if (like && favorite) {
+                                        console.log('20');
                                         like.click();
+                                        console.log('21');
                                         favorite.click();
+                                        console.log('22');
                                         var continueBtn = document.querySelector('.coreSpriteRightPaginationArrow');
+                                        console.log('23');
                                         if (continueBtn) {
                                             continueBtn.click();
+                                            console.log('24');
                                             return true;
                                             // loop gets to continue;
                                         }
@@ -148,3 +172,4 @@ exports.startLiking = function (_a) {
         });
     });
 };
+console.log('1');
