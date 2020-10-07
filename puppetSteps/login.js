@@ -1,6 +1,6 @@
 module.exports = async (userName, password, page, res) => {
   await page.waitForSelector('body');
-  if (await page.waitForSelector('.aOOlW')) await page.click('.aOOlW');
+  if (await page.$('.aOOlW')) await page.click('.aOOlW');
 
   res.status(200).write(`data: Logging in to your account\n\n`);
   await page.waitForSelector('input[name="username"]');
