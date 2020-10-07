@@ -25,8 +25,8 @@ app.get('/like', async (req, res) => {
   try {
     res.status(200).write(`data: Starting up the process\n\n`);
     const browser = await puppeteer.launch({
-      headless: false,
-      //args: ['--no-sandbox', '--disable-setuid-sandbox'],
+      //headless: false,
+      args: ['--no-sandbox', '--disable-setuid-sandbox'],
     });
     const page = await browser.newPage();
     await page.goto('https://instagram.com');
