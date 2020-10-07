@@ -1,31 +1,22 @@
-import puppeteer from 'puppeteer';
+const puppeteer = require('puppeteer');
 
-interface Body {
-  userName: string;
-  password: string;
-  hashtag: string;
-}
-interface Result {
-  status: string | number;
-}
-
-export const startLiking = async ({
-  userName,
-  password,
-  hashtag,
-}: Body): Promise<Result> => {
+const startLiking = async ({ userName, password, hashtag }, res) => {
+  console.log(userName);
   try {
     const browser = await puppeteer.launch({
-      // headless: false,
+      //headless: false,
       args: ['--no-sandbox', '--disable-setuid-sandbox'],
     });
 
-    console.log('1');
     const page = await browser.newPage();
 
     console.log('2');
     await page.goto('https://instagram.com');
 
+    await page.waitForSelector('.aOOlW');
+    await page.click('.aOOlW');
+
+    res.status(200).write(`data: Logging in to your account\n\n`);
     console.log('3');
     await page.waitForSelector('input[name="username"]');
 
@@ -55,8 +46,7 @@ export const startLiking = async ({
 
     console.log('11');
     await page.$$eval('.eLAPa', (photos) => {
-      let element: HTMLElement = photos[9] as HTMLElement;
-
+      let element = photos[9];
       console.log('12');
       element.click();
     });
@@ -68,7 +58,7 @@ export const startLiking = async ({
       await page.waitForSelector('.ltpMr ._8-yf5');
 
       console.log('13');
-      const res = await page.$eval('.ltpMr ._8-yf5', (svg: Element) => {
+      const res = await page.$eval('.ltpMr ._8-yf5', (svg) => {
         const status = svg.getAttribute('aria-label');
 
         if (status === 'Like') {
@@ -79,17 +69,13 @@ export const startLiking = async ({
 
             const like = btns[0].closest('button');
 
-            const favorite = btns[3]
-              ? btns[3].closest('button')
-              : btns[2].closest('button');
+            const favorite = btns[3] ? btns[3].closest('button') : btns[2].closest('button');
 
             if (like && favorite) {
               like.click();
               favorite.click();
 
-              const continueBtn: HTMLElement = document.querySelector(
-                '.coreSpriteRightPaginationArrow'
-              ) as HTMLElement;
+              const continueBtn = document.querySelector('.coreSpriteRightPaginationArrow');
               console.log('23');
               if (continueBtn) {
                 continueBtn.click();
@@ -114,3 +100,5 @@ export const startLiking = async ({
     return { status: 'error' };
   }
 };
+
+module.exports = startLiking;
